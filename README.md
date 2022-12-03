@@ -1,50 +1,17 @@
-# Hello World Docker Container
+# Created a "To-Do-List" app container with persistent DB access
 
-pushed to [Docker Hub
-](https://hub.docker.com/r/u1ih/hello)
+- Each container starts from the image definition each time it starts. While containers can create, update, and delete files, those changes are lost when the container is removed and all changes are isolated to that container. With volumes, we can change all of this. Named volumes provide the ability to connect specific filesystem paths of the container back to the host machine. If a directory in the container is mounted, changes in that directory are also seen on the host machine. If we mount that same directory across container restarts, we’d see the same files.
 
-Run with:
+- By default, the To-Do-List app stores its data in a SQLite Database at /etc/todos/todo.db in the container’s filesystem. With the database being a single file, if we can persist that file on the host and make it available to the next container, it should be able to pick up where the last one left off. By creating a volume and attaching it to the directory the data is stored in, we can persist the data. As the container writes to the todo.db file, it will be persisted to the host in the volume.
 
-`docker run -d -p 8080:8080 u1ih/hello`
+- As mentioned, we are going to use a named volume. Docker maintains the physical location on the disk and only needs to remember the name of the volume. Every time you the volume is referenced, Docker will make sure the correct data is provided.
 
-Steps:
+- Pushed to [Docker Hub] (https://hub.docker.com/repository/docker/valoryx/to-do-list-app)
 
-## 1: Get Source
+- Run with: `docker run -dp 3000:3000 -v todo-db:/etc/todos getting-started`
 
-`git clone https://github.com/u1i/docker-hello`
+![image](https://user-images.githubusercontent.com/111099302/205428128-e3103042-ce57-43a2-9a28-34e2edfc64ee.png)
 
-## 2: Make changes
+# Created a Notify_Telegram" workflow to send a Telegram message when git repo changes
 
-modify index.html in the app directory
-
-## 3: Build Container
-
-change into the directory: 
-`cd docker-hello`
-
-`docker build . -t myhello`
-
-## 4: Run Container
-
-`docker run -d -p 8080:8080 myhello`
-
-If you experience an error message, you may have another (the previous?) container running on the same port. In this case use this command to kill all running containers:
-
-`docker kill $(docker ps -q)`
-
-and then try again :-)
-
-## 5: Optional: Publish to Dockerhub
-
-For this you need to sign up at https://hub.docker.com/ – and get a little familiar with it as well. If you're completely new to this, please ignore this part for now.
-
-`docker tag myhello <YOUR_USERNAME>/hello:<VERSION_NUMBER>`
-
-`docker tag myhello <YOUR_USERNAME>/hello:latest`
-
-`docker login`
-
-`docker push <YOUR_USERNAME>/hello:<VERSION_NUMBER>`
-
-`docker push <YOUR_USERNAME>/hello:latest`
-
+- 
