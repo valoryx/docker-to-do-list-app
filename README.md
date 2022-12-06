@@ -16,7 +16,7 @@ Docker containers ![image](https://user-images.githubusercontent.com/111099302/2
 - Pushed to [Docker Hub] (https://hub.docker.com/repository/docker/valoryx/to-do-list-app)
 
 - Run with: `docker run -dp 3000:3000 -v todo-db:/etc/todos getting-started`
-- View example at Play with Docker: http://ip172-18-0-83-ce7955m3tccg00fr10tg-3000.direct.labs.play-with-docker.com/
+- Experience running app at Play with Docker (time sensitive link): http://ip172-18-0-83-ce7955m3tccg00fr10tg-3000.direct.labs.play-with-docker.com/
 
 ![image](https://user-images.githubusercontent.com/111099302/205428128-e3103042-ce57-43a2-9a28-34e2edfc64ee.png)
 
